@@ -1,0 +1,299 @@
+﻿@using eUseControl.Domain.Enums;
+@using TW.Extension;
+
+@{ 
+     var user = System.Web.HttpContext.Current.GetMySessionObject();
+}
+
+<section class="banner-area organic-breadcrumb">
+     <div class="container">
+          <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+               <div class="col-first">
+                    <h1>Shop Category page</h1>
+                    <nav class="d-flex align-items-center">
+                         <a href="@Url.Action("Index", "Home")">Pagina principală<span class="lnr lnr-arrow-right"></span></a>
+                         <a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
+                         <a href="@Url.Action("Category", "Home")">Fashon Category</a>
+                    </nav>
+               </div>
+          </div>
+     </div>
+</section>
+<!-- End Banner Area -->
+<div class="container">
+     <div class="row">
+          <div class="col-xl-3 col-lg-4 col-md-5">
+               <div class="sidebar-categories">
+                    <div class="head">Browse Categories</div>
+                    <ul class="main-categories">
+                    </ul>
+               </div>
+               <div class="sidebar-filter mt-50">
+                    <div class="top-filter-head">Product Filters</div>
+                    <div class="common-filter">
+                         <div class="head">Brands</div>
+                         <form action="#">
+                              <ul>
+                                   <li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="brand"><label for="Nike">Nike<span>(29)</span></label></li>
+                                   <li class="filter-list"><input class="pixel-radio" type="radio" id="asus" name="brand"><label for="Addidas">Addidas<span>(29)</span></label></li>
+                                   <li class="filter-list"><input class="pixel-radio" type="radio" id="gionee" name="brand"><label for="New Balance">New Balance<span>(19)</span></label></li>
+                                   <li class="filter-list"><input class="pixel-radio" type="radio" id="micromax" name="brand"><label for="Asics">Asics<span>(19)</span></label></li>
+                              </ul>
+                         </form>
+                    </div>
+                    <div class="common-filter">
+                         <div class="head">Color</div>
+                         <form action="#">
+                              <ul>
+                                   <li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"><label for="black">Black<span>(29)</span></label></li>
+                                   <li class="filter-list">
+                                        <input class="pixel-radio" type="radio" id="balckleather" name="color"><label for="balckleather">
+                                             Black
+                                             Leather<span>(29)</span>
+                                        </label>
+                                   </li>
+                                   <li class="filter-list">
+                                        <input class="pixel-radio" type="radio" id="blackred" name="color"><label for="blackred">
+                                             Black
+                                             with red<span>(19)</span>
+                                        </label>
+                                   </li>
+                                   <li class="filter-list"><input class="pixel-radio" type="radio" id="gold" name="color"><label for="gold">Gold<span>(19)</span></label></li>
+                                   <li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey" name="color"><label for="spacegrey">Spacegrey<span>(19)</span></label></li>
+                              </ul>
+                         </form>
+                    </div>
+                    <div class="common-filter">
+                         <div class="head">Price</div>
+                         <div class="price-range-area">
+                              <div id="price-range"></div>
+                              <div class="value-wrapper d-flex">
+                                   <div class="price">Price:</div>
+                                   <span>$</span>
+                                   <div id="lower-value"></div>
+                                   <div class="to">to</div>
+                                   <span>$</span>
+                                   <div id="upper-value"></div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <div class="col-xl-9 col-lg-8 col-md-7">
+               <!-- Start Filter Bar -->
+               <div class="filter-bar d-flex flex-wrap align-items-center">
+                    <div class="sorting">
+                         <select>
+                              <option value="1">Default sorting</option>
+                              <option value="1">Default sorting</option>
+                              <option value="1">Default sorting</option>
+                         </select>
+                    </div>
+               </div>
+               <!-- End Filter Bar -->
+               <!-- Start Best Seller -->
+               <section class="lattest-product-area pb-40 category-list">
+                    <div class="row">
+                        @foreach (var prod in Model.Products)
+                         {
+                         <div class="col-lg-4 col-md-6">
+                              <div class="single-product">
+                                   <img class="img-fluid" src="@Url.Content(@prod.ImagePath)" alt="@prod.Name">
+                                   <div class="product-details">
+                                        <h6>
+                                             @prod.Name
+                                        </h6>
+                                        <div class="price">
+                                             <h6>$@prod.Price</h6>
+                                        </div>
+                                        <div class="prd-bottom">
+
+                                             <a href="" class="social-info">
+                                                  <span class="ti-bag"></span>
+                                                  <p class="hover-text">add to bag</p>
+                                             </a>
+                                             <a href="" class="social-info">
+                                                  <span class="lnr lnr-heart"></span>
+                                                  <p class="hover-text">Wishlist</p>
+                                             </a>
+                                             @{ if (user != null && (user.Level == URole.ADMIN || user.Level == URole.MODERATOR))
+                                                {
+                                                       <a href=" @Url.Action(("Edit/" + prod.Id), "Product")" class="social-info">
+                                                            <span class="lnr lnr-pencil"></span>
+                                                            <p class="hover-text">Edit</p>
+                                                       </a> 
+                                                }
+                                                  else
+                                                  {
+                                                       <a href="" class="social-info">
+                                                            <span class="lnr lnr-sync"></span>
+                                                            <p class="hover-text">compare</p>
+                                                        </a>
+                                                  } 
+                                              }
+                                             @{ if (user != null && user.Level == URole.ADMIN)
+                                                {
+                                                       <a href=" @Url.Action(("Delete/"+prod.Id),"Product")" class="social-info">
+                                                            <span class="lnr lnr-cross"></span> 
+                                                            <p class="hover-text">Delete</p>
+                                                       </a> 
+                                                }
+                                                else
+                                                {
+                                                       <a href=" " class=" social-info">
+                                                            <span class="lnr lnr-move"></span>
+                                                            <p class="hover-text">view more</p>
+                                                       </a>
+                                                } 
+                                               }
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         }
+                         <!-- single product -->
+                         
+                    </div>
+               </section>
+               <!-- End Best Seller -->
+          </div>
+     </div>
+</div>
+
+<section class="related-product-area section_gap_bottom">
+     <div class="container">
+          <div class="row justify-content-center">
+               <div class="col-lg-6 text-center">
+                    <div class="section-title">
+                         <h1>Deals of the Week</h1>
+                         <p>
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                              magna aliqua.
+                         </p>
+                    </div>
+               </div>
+          </div>
+          <div class="row">
+               <div class="col-lg-9">
+                    <div class="row">
+                         <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                              <div class="single-related-product d-flex">
+                                   <a href="#"><img class="s70pximg" src="../Images/product/Bolt.jpg" alt=""></a>
+                                   <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                             <h6>$189.00</h6>
+                                             <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                              <div class="single-related-product d-flex">
+                                   <a href="#"><img class="s70pximg" src="../Images/product/fuse.jpg" alt=""></a>
+                                   <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                             <h6>$189.00</h6>
+                                             <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                              <div class="single-related-product d-flex">
+                                   <a href="#"><img class="s70pximg" src="../Images/product/GT-Xuberance.jpg" alt=""></a>
+                                   <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                             <h6>$189.00</h6>
+                                             <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                              <div class="single-related-product d-flex">
+                                   <a href="#"><img class="s70pximg" src="../Images/product/Max Aura 3.jpg" alt=""></a>
+                                   <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                             <h6>$189.00</h6>
+                                             <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                              <div class="single-related-product d-flex">
+                                   <a href="#"><img class="s70pximg" src="../Images/r6.jpg" alt=""></a>
+                                   <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                             <h6>$189.00</h6>
+                                             <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                              <div class="single-related-product d-flex">
+                                   <a href="#"><img class="s70pximg" src="../Images/product/Metcon 7.jpg" alt=""></a>
+                                   <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                             <h6>$189.00</h6>
+                                             <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-lg-4 col-md-4 col-sm-6">
+                              <div class="single-related-product d-flex">
+                                   <a href="#"><img class="s70pximg" src="../Images/product/Nike 97 MNS.jpg" alt=""></a>
+                                   <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                             <h6>$189.00</h6>
+                                             <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-lg-4 col-md-4 col-sm-6">
+                              <div class="single-related-product d-flex">
+                                   <a href="#"><img class="s70pximg" src="../Images/product/p1.jpg" alt=""></a>
+                                   <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                             <h6>$189.00</h6>
+                                             <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-lg-4 col-md-4 col-sm-6">
+                              <div class="single-related-product d-flex">
+                                   <a href="#"><img class="s70pximg" src="../Images/r11.jpg" alt=""></a>
+                                   <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                             <h6>$189.00</h6>
+                                             <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <div class="col-lg-3">
+                    <div class="ctg-right">
+                         <a href="#" target="_blank">
+                              <img class="img-fluid d-block mx-auto" src="../Images/category/c5.jpg" alt="">
+                         </a>
+                    </div>
+               </div>
+          </div>
+     </div>
+</section>
+<!-- End related-product Area -->

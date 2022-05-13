@@ -1,0 +1,56 @@
+﻿@using System.Web.Optimization; 
+
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+     <!-- Mobile Specific Meta -->
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <!-- Favicon-->
+     <link rel="shortcut icon" href="../../Images/fav.png">
+     <!-- Author Meta -->
+     <meta name="author" content="CodePixar">
+     <!-- Meta Description -->
+     <meta name="description" content="">
+     <!-- Meta Keyword -->
+     <meta name="keywords" content="">
+     <!-- meta character set -->
+     <meta charset="UTF-8">
+     <!-- Site Title -->
+     <title>Karma Shop</title>
+     <!--
+          CSS
+          ============================================= -->
+     @Styles.Render("~/bundles/bootstrap/css")
+     @Styles.Render("~/bundles/font-awesome/css")
+     @Styles.Render("~/bundles/linearicons/css")
+     @Styles.Render("~/bundles/themify-icons/css")
+     @Styles.Render("~/bundles/owl.carousel/css")
+     @Styles.Render("~/bundles/nice-select/css")
+     @Styles.Render("~/bundles/nouislidert/css")
+     @Styles.Render("~/bundles/ion.rangeSlider/css")
+     @Styles.Render("~/bundles/ion.rangeSlider.skinFlat/css")
+     @Styles.Render("~/bundles/magnific-popup/css")
+     @Styles.Render("~/bundles/main/css")
+
+</head>
+<body> 
+     @Html.Partial("_Header")
+     @RenderBody()
+     @Html.Partial("_Footer")
+
+     @Scripts.Render("~/bundles/jquery-2.2.4/js")
+     @Scripts.Render("~/bundles/popper/js")
+     @Scripts.Render("~/bundles/jquery.ajaxchimp/js")
+     @Scripts.Render("~/bundles/jquery.nice-select/js")
+     @Scripts.Render("~/bundles/jquery.sticky/js")
+     @Scripts.Render("~/bundles/nouislider/js")
+     @Scripts.Render("~/bundles/countdown/js")
+     @Scripts.Render("~/bundles/jquery.magnific-popup/js")
+     @Scripts.Render("~/bundles/owl.carousel.min/js")
+     @Scripts.Render("~/bundles/gmaps/js")
+     @Scripts.Render("~/bundles/main/js")
+</body>
+
+</html>
+

@@ -1,0 +1,77 @@
+﻿@model TW.Models.MProduct
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutNULL.cshtml";
+}
+
+<h2>Add</h2>
+
+<div class="card-body">
+     <h4 class="header-title">Completati formularul</h4>
+     @using (Ajax.BeginForm("Add", "Product", null, new AjaxOptions
+     {
+          HttpMethod = "POST",
+          UpdateTargetId = "edit-form",
+          OnSuccess = "onSuccess",
+          OnFailure = "onFailure"
+     }, new
+     {
+          id = "myAwesomeDropzone",
+          @class = "needs-validation",
+          enctype = "multipart/form-data"
+     }))
+     {
+          @Html.AntiForgeryToken()
+          @Html.ValidationSummary(true)
+          <div class="form-group mb-3">
+               @Html.LabelFor(x => x.Name)<span class="text-danger">*</span>
+               @Html.TextBoxFor(x => x.Name, new
+               {
+                   @class = "form-control",
+                   placeholder = "Nume",
+                   id = "validationCustom01",
+                   name = "name"
+               })
+               @Html.ValidationMessageFor(x => x.Name, "", new { @class = "invalid-feedback" })
+          </div>
+          <div class="form-group mb-3">
+               @Html.LabelFor(x => x.Price)<span class="text-danger">*</span>
+               @Html.TextBoxFor(x => x.Price, new
+               {
+                   @class = "form-control",
+                   placeholder = "Pret",
+                   id = "validationCustom02",
+                   name = "price",
+                   type = "number"
+               })
+               @Html.ValidationMessageFor(x => x.Price, "", new { @class = "invalid-feedback" })
+          </div>
+          <div class="form-group mb-3">
+               @Html.LabelFor(x => x.Image)<span class="text-danger">*</span>
+               <div class="fallback">
+                    @Html.TextBoxFor(x => x.Image, new
+                {
+                    @class = "form-control",
+                    placeholder = "Pret",
+                    id = "validationCustom05",
+                    name = "Image",
+                    type = "file"
+                })
+               </div>
+          </div>
+          <div class="form-group text-right mb-0">
+               <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                    Submit
+               </button>
+               <button type="reset" class="btn btn-secondary waves-effect waves-light">
+                    Cancel
+               </button>
+          </div>
+     }
+
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

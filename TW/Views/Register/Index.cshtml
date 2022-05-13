@@ -1,0 +1,78 @@
+﻿
+
+@using System.Web.Optimization
+@model TW.Models.UserRegister
+
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+     <div class="container">
+          <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+               <div class="col-first">
+                    <h1>Login/Register</h1>
+                    <nav class="d-flex align-items-center">
+                         <a href="../Home/Index">Pagina principală<span class="lnr lnr-arrow-right"></span></a>
+                         <a href="category.html">Login/Register</a>
+                    </nav>
+               </div>
+          </div>
+     </div>
+</section>
+<!-- End Banner Area -->
+<!--================Login Box Area =================-->
+
+<section class="login_box_area section_gap">
+     <div class="container">
+          <div>
+              
+               <div class="col-lg-12">
+                    <div class="login_form_inner">
+                         <h3>Register</h3>
+
+                         @Html.ValidationSummary(true)
+                         @using (Html.BeginForm("Index", "Register", FormMethod.Post, new { @id = "RegisterForm" }))
+                         {
+                              @Html.AntiForgeryToken()
+                              <div class=" col-md-12 form-group">
+                                   @Html.TextBoxFor(m => m.Username, new
+                              {
+                                  placeholder = "Username",
+                                  title = "Please enter you username",
+                                  value = "",
+                                  name = "Username",
+                                  id = "Username",
+                                  @class = "form-control"
+                              })
+                              </div>
+                         <div class=" col-md-12 form-group">
+                                   @Html.TextBoxFor(m => m.Email, new
+                              {
+                                  placeholder = "email@karma.com",
+                                  title = "Please enter you email",
+                                  value = "",
+                                  name = "Email",
+                                  id = "Email",
+                                  @class = "form-control"
+                              })
+                              </div>
+                              <div class="col-md-12 form-group">
+                                   @Html.TextBoxFor(m => m.Password, new
+                              {
+                                  @class = "form-control",
+                                  type = "password",
+                                  title = "Please enter your password",
+                                  placeholder = "**************",
+                                  value = "",
+                                  name = "password",
+                                  id = "password"
+                              })
+                              </div>
+                              <div class="col-md-12 form-group">
+                                   <button type="submit" value="submit" class="primary-btn">Submit</button>
+                              </div>
+                         }
+
+                    </div>
+               </div>
+          </div>
+     </div>
+</section>
