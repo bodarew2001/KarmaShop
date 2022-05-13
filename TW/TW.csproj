@@ -467,9 +467,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\MProducts.cs" />
+    <Compile Include="Models\ProductList.cs" />
     <Compile Include="Models\UserStatus.cs" />
-    <Compile Include="Models\MProduct.cs" />
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -501,7 +501,6 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Product\SingleProduct.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\Home\Confirmation.cshtml" />
@@ -509,7 +508,6 @@
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutNULL.cshtml" />
     <Content Include="Views\Product\Add.cshtml" />
-    <Content Include="Views\Home\Logout.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

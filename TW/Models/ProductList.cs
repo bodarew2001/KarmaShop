@@ -7,7 +7,7 @@ using eUseControl.Domain.Enums;
 
 namespace TW.Models
 {
-     public class MProducts
+     public class ProductList
      {
           public List<PDbTable> Products { get; set; }
      }

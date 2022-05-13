@@ -6,7 +6,7 @@ using System.Web;
 
 namespace TW.Models
 {
-     public class MProduct
+     public class ProductModel
      {
           //Id
           public int Id { get; set; }

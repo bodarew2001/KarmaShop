@@ -25,7 +25,7 @@ namespace TW.Controllers
           // GET: Product
           public ActionResult Index()
           {
-               MProducts prod = new MProducts();
+               ProductList prod = new ProductList();
                prod.Products = _product.Get();
                SessionStatus();
                if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] == "login")
@@ -42,7 +42,7 @@ namespace TW.Controllers
           }
           [AdminMod]
           [HttpPost]
-          public ActionResult Add(MProduct prod)
+          public ActionResult Add(ProductModel prod)
           {
                string fileName = Path.GetFileNameWithoutExtension(prod.Image.FileName);
                string extension = Path.GetExtension(prod.Image.FileName);
@@ -64,7 +64,7 @@ namespace TW.Controllers
           public ActionResult Products()
           {
                SessionStatus();
-               MProducts prod = new MProducts();
+               ProductList prod = new ProductList();
                prod.Products = _product.Get();
                return View(prod);
           }
@@ -89,7 +89,6 @@ namespace TW.Controllers
                return RedirectToAction("Index");
           }
           [AdminMod]
-          [HttpDelete]
           public ActionResult Delete(int Id)
           {
                ProductContext productContext = new ProductContext();

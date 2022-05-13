@@ -12,6 +12,6 @@ namespace TW.Models
           public URole Level { get; set; }
 
           public bool Status { get; set; }
-          public List<MProduct> Products { get; set; }
+          public List<ProductModel> Products { get; set; }
      }
 }
