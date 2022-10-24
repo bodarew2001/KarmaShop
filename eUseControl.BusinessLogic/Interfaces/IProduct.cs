@@ -7,9 +7,10 @@ using eUseControl.Domain.Entities.Products;
 
 namespace eUseControl.BusinessLogic.Interfaces
 {
-     public interface IProduct
-     {
-          ProdResp Insert(PDbTable prod);
-          List<PDbTable> Get();
-     }
+    public interface IProduct
+    {
+        ProdResp Insert(PDbTable prod);
+        List<PDbTable> Get();
+        ProdResp Delete(int Id);
+    }
 }

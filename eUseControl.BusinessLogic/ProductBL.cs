@@ -9,15 +9,19 @@ using eUseControl.Domain.Entities.Products;
 
 namespace eUseControl.BusinessLogic
 {
-     public class ProductBL : AdminApi, IProduct
-     {
-          public ProdResp Insert(PDbTable prod)
-          {
-               return InsertProduct(prod);
-          }
-          public List<PDbTable> Get()
-          {
-               return GetProducts();
-          }
-     }
+    public class ProductBL : AdminApi, IProduct
+    {
+        public ProdResp Insert(PDbTable prod)
+        {
+            return InsertProduct(prod);
+        }
+        public List<PDbTable> Get()
+        {
+            return GetProducts();
+        }
+        public ProdResp Delete(int id)
+        {
+            return DeleteProduct(id);
+        }
+    }
 }
